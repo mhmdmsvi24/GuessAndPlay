@@ -15,23 +15,55 @@ function takeInput() {
   return parseInt(input.value);
 }
 
-const currentRandom = randNum();
-console.log(currentRandom);
+let currentRandom = randNum();
 
 // Updates The Header Guide
 function updateHeader(txt) {
   headerText.textContent = txt;
 }
 
-function updateScore(reset = false) {
+function updateScore() {
   let roundScore = parseInt(score.textContent);
 
+  roundScore -= 1;
+  score.textContent = roundScore;
+}
+
+function updateHighScore(reset) {
   if (reset) {
-    highScore.textContent = roundScore;
-    score.textContent = 0;
+    highScore.textContent = 0;
+    input.value = "";
+    updateHeader("Guess my Number");
+    blockInput(false);
   } else {
-    roundScore -= 1;
-    score.textContent = roundScore;
+    highScore.textContent = score.textContent;
+  }
+
+  currentRandom = randNum();
+  score.textContent = 20;
+}
+
+function resetAnimation(add) {
+  if (add) {
+    resetBtn.classList.add("neon-animation");
+  } else {
+    resetBtn.classList.remove("neon-animation");
+  }
+}
+
+function isLost() {
+  resetAnimation(true);
+  updateHighScore(true);
+  updateHeader("Loser! Loser! Loser!");
+  score.textContent = 20;
+  blockInput(true);
+}
+
+function blockInput(block) {
+  if (block) {
+    input.setAttribute("disabled", true);
+  } else {
+    input.removeAttribute("disabled");
   }
 }
 
@@ -39,7 +71,9 @@ function updateScore(reset = false) {
 function checkStatus(status) {
   if (status === 0) {
     updateHeader("You Won!");
-    updateScore(true);
+    updateScore();
+    updateHighScore(false);
+    resetAnimation(true);
   } else if (status <= -20 || status >= 20) {
     updateHeader("Too Far Away");
     updateScore();
@@ -57,9 +91,15 @@ function checkStatus(status) {
 
 checkBtn.addEventListener("click", () => {
   const enterdNum = takeInput();
-  checkStatus(currentRandom - enterdNum);
+
+  if (parseInt(score.textContent) === 1) {
+    isLost();
+  } else {
+    checkStatus(currentRandom - enterdNum);
+  }
 });
 
 resetBtn.addEventListener("click", () => {
-  updateScore((resetAll = true));
+  updateHighScore(true);
+  resetAnimation(false);
 });
