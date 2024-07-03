@@ -1,0 +1,25 @@
+@font-face {
+  font-family: "blackOps";
+  src: url(./assets/fonts/blackopsone-regular-webfont.woff2) format(woff2),
+    url(./assets/fonts/blackopsone-regular-webfont.woff) format(woff);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style-type: none;
+  user-select: none;
+  font-family: "blackOps", sans-serif;
+}
+
+:root {
+  --text-main: #f1faeeff;
+  --button-text: #a8dadcff;
+  --button-main: #457b9dff;
+  --bg-main: #1d3557ff;
+  --bg-secondary: #e63946ff;
+}

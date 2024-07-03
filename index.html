@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="./styles/app.css" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <div id="game">
+        <div class="game__header">
+          <div class="game__header__title">
+            <span id="header__title--text">Guess My Number</span>
+          </div>
+
+          <div class="game__header__scoreboard">
+            <div class="scoreboard--score">Score: <span>20</span></div>
+            <div class="scoreboard--highscore">
+              High Score: <span>0</span>
+            </div>
+          </div>
+
+          <div class="game__header__box">
+            <div></div>
+            <div><span>?</span></div>
+          </div>
+        </div>
+
+        <div class="game__body">
+          <input
+            type="number"
+            min="1"
+            max="50"
+            id="game__body--input"
+            placeholder="Guess Here Loser (1-50)"
+          />
+          <div class="game__body__btns">
+            <button id="game__body--check">Check</button>
+            <button id="game__body--reset">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="scripts/script.js"></script>
+  </body>
+</html>
